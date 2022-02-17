@@ -35,10 +35,10 @@ char *Str_concat(char dest[], const char source[]) {
     assert(dest != NULL || source != NULL);
     size_t size = Str_getLength(dest);
     size_t totalSize = Str_getLength(dest) + Str_getLength(source) + 1;
-    //char *concat;
-   // concat = (char*)malloc(size);
+    /*  char *concat;
+        concat = (char*)malloc(size); */
     size_t countS = 0; 
-    // Str_copy(concat, dest); 
+    /*  // Str_copy(concat, dest);*/ 
    while (size < totalSize) {
         dest[size] = source[countS];
         size++; 
