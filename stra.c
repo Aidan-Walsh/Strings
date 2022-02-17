@@ -86,6 +86,7 @@ char *Str_search(const char haystack[], const char needle[]) {
             if (contained) {
                 contained = 0;
                 countN = 0; 
+                countH--; 
             } 
         }
         countH++; 
