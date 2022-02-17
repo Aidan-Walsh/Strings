@@ -99,9 +99,11 @@ char *Str_search(const char *haystack, const char *needle) {
 
        }
        else {
+           if (contained) {
+               phaystack = location; 
+           }
            contained = 0; 
            pneedle = needle; 
-           phaystack = location; 
        }
        phaystack++; 
    }
