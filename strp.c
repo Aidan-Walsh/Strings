@@ -81,7 +81,7 @@ int Str_compare(const char *st1, const char *st2) {
 char *Str_search(const char *haystack, const char *needle) {
    const char* phaystack = haystack; 
    const char* pneedle = needle; 
-   const char* location; 
+   const char* location = haystack; 
    int contained = 0; 
    assert(haystack != NULL || needle != NULL);
    while (*phaystack != '\0') {
