@@ -79,39 +79,39 @@ int Str_compare(const char *st1, const char *st2) {
 }
 
 char *Str_search(const char *haystack, const char *needle) {
+   const char* phaystack = haystack; 
+   const char* pneedle = needle; 
+   const char* location; 
+   int contained = 0; 
    assert(haystack != NULL || needle != NULL);
-    size_t countH = 0; 
-    size_t needleSize = Str_getLength(needle);
-    size_t countN = 0; 
-    int contained = 0;
-        while (haystack[countH] != '\0') {
-        if (haystack[countH] == needle[countN] && needle[countN]!= '\0')
- {
-            contained = 1;
-            countN++; 
-        }
-        else if (needle[countN] == '\0' && contained) { 
-                return (char*) &haystack[countH-needleSize];  
-                }
-        else {
-            if (contained) {
-                countH = countH - countN; 
-                contained = 0;
-                countN = 0; 
-            } 
-        }
-        countH++; 
-    }
-    /* case where needle is located at end of haystack */
-if ((contained == 1 && needle[countN] == '\0')) {
-       return (char *)&haystack[countH-needleSize]; 
-    }
-    /* case where needle is just "" */
-    else if (needleSize == 0) {
-                    return (char *)haystack; 
-    }
-    else {
-        return NULL; 
-}
+   while (*phaystack != '\0') {
+       if (*phaystack == *pneedle) {
+           if (contained == 0) {
+               location =  phaystack; 
+           }
+            
+           contained = 1; 
+           pneedle++; 
+       }
+       else if (*pneedle == '\0' && contained) {  
+           
+           return (char*) location; 
+
+       }
+       else {
+           contained = 0; 
+           pneedle = needle; 
+           phaystack = location; 
+       }
+       phaystack++; 
+   }
+   if (Str_getLength(needle) == 0) {
+       return (char*) haystack; 
+   }
+   if (contained && *pneedle == '\0') {
+       
+       return (char*) location; 
+   } 
+   return NULL; 
 }
 
