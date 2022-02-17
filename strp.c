@@ -51,32 +51,31 @@ char *Str_concat(char *dest, const char *source) {
     if (*trackSource == '\0') {
         *dest = '\0';
     }
-
     return first; 
-    
-    
-   
 }
 
 int Str_compare(const char *st1, const char *st2) {
-    size_t count= 0; 
+    const char* pst1 = st1; 
+    const char* pst2 = st2; 
+    
     assert(st1 != NULL || st2 != NULL);
-    while (st1[count] != '\0' && st2[count] != '\0') {
-        if (st1[count] < st2[count]) {
-            return -1;
+    while (*pst1 != '\0' && *pst2 != '\0') {
+        if (*pst1 < *pst2) {
+            return -1; 
         }
-        else if (st1[count] > st2[count]) {
+        else if (*pst1 > *pst2) {
             return 1; 
         }
-        count++; 
+        pst1++; 
+        pst2++; 
     }
-    if (st1[count] == '\0' && st2[count] == '\0') {
-        return 0; 
+    if (*pst1 == '\0' && *pst2 != '\0') {
+        return -1;
     }
-    if (st1[count] == '\0') {
-        return -1; 
+    else if (*pst1 != '\0' && *pst2 == '\0') {
+        return 1; 
     }
-    return 1; 
+    return 0; 
 }
 
 char *Str_search(const char *haystack, const char *needle) {
