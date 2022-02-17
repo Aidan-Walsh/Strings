@@ -32,21 +32,20 @@ char *Str_copy(char dst[], const char src[]) {
 }
 
 char *Str_concat(char dest[], const char source[]) {
-    size_t size = Str_getLength(dest) + Str_getLength(source) + 1;
-    char *concat;
-    concat = (char*)malloc(size);
-    concat[0] = 'a';
-    Str_copy(concat, dest); 
-    size_t count = Str_getLength(dest); 
-    size_t countS = 0; 
     assert(dest != NULL || source != NULL);
-    while (count < size) {
-        concat[count] = source[countS];
-        count++; 
+    size_t size = Str_getLength(dest);
+    size_t totalSize = Str_getLength(dest) + Str_getLength(source) + 1;
+    //char *concat;
+   // concat = (char*)malloc(size);
+    size_t countS = 0; 
+    // Str_copy(concat, dest); 
+   while (size < totalSize) {
+        dest[size] = source[countS];
+        size++; 
         countS++; 
-    }
-    concat[size] = '\0';
-    return concat; 
+    } 
+    dest[totalSize] = '\0';
+    return dest; 
 }
 
 int Str_compare(const char st1[], const char st2[]) {
