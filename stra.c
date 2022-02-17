@@ -32,11 +32,11 @@ char *Str_copy(char dst[], const char src[]) {
 }
 
 char *Str_concat(char dest[], const char source[]) {
-    assert(dest != NULL || source != NULL);
     size_t size = Str_getLength(dest);
     size_t totalSize = Str_getLength(dest) + Str_getLength(source) + 1;
     /*  char *concat  concat = (char*)malloc(size); */
     size_t countS = 0; 
+    assert(dest != NULL || source != NULL);
     /* Str_copy(concat, dest);*/ 
    while (size < totalSize) {
         dest[size] = source[countS];
@@ -68,11 +68,11 @@ int Str_compare(const char st1[], const char st2[]) {
 }
 
 char *Str_search(const char haystack[], const char needle[]) {
-   assert(haystack != NULL || needle != NULL);
     size_t countH = 0; 
     size_t needleSize = Str_getLength(needle);
     size_t countN = 0; 
     int contained = 0;
+    assert(haystack != NULL || needle != NULL);
         while (haystack[countH] != '\0') {
         if (haystack[countH] == needle[countN] && needle[countN]!= '\0')
  {
