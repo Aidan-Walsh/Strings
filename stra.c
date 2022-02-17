@@ -44,7 +44,6 @@ char *Str_concat(char dest[], const char source[]) {
         size++; 
         countS++; 
     } 
-    dest[totalSize] = '\0';
     return dest; 
 }
 
@@ -73,51 +72,34 @@ char *Str_search(const char haystack[], const char needle[]) {
    assert(haystack != NULL || needle != NULL);
     size_t countH = 0; 
     size_t needleSize = Str_getLength(needle);
-    size_t totalSize= needleSize + 1 + Str_getLength(haystack); 
     size_t countN = 0; 
     int contained = 0;
-    int fullyContained = 0; 
-    int i; 
-    char *returned;
-    returned = (char*)malloc(totalSize);
         while (haystack[countH] != '\0') {
         if (haystack[countH] == needle[countN] && needle[countN] != '\0') {
             contained = 1;
             countN++; 
         }
-        else if (needle[countN] == '\0' && contained) {
-            /* place needle into returned array */
-                    for (i = 0; i < needleSize; i++) {
-                        returned[i] = needle[i]; 
-                    }
-                    returned[countN] =  haystack[countH];
-                    countN++;
-                    fullyContained = 1; 
-                    contained = 0; 
+        else if (needle[countN] == '\0' && contained) { 
+                    return (char*) &haystack[countH-needleSize];  
                 }
-        else if (fullyContained) {
-            returned[countN] =  haystack[countH];
-            countN++; 
-        }
         else {
             if (contained) {
                 contained = 0;
                 countN = 0; 
             } 
-
         }
         countH++; 
     }
-    if (fullyContained ) {
-        returned[countN] = '\0';
-        return returned;
+    /* case where needle is located at end of haystack */
+if ((contained == 1 && needle[countN] == '\0')) {
+       return (char *)&haystack[countH-needleSize]; 
     }
-    else if ((contained == 1 && needle[countN] == '\0')) {
-       return Str_copy(returned, needle);
+    /* case where needle is just "" */
+    else if (needleSize == 0) {
+                    return (char *)haystack; 
     }
     else {
         return NULL; 
 }
 }
-/* instead make it so that go through to see if within, and if it is, then put the string in, and everything after */
 
