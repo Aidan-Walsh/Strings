@@ -20,8 +20,49 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
+   char *newLine = Str_search(pcLine, pcFrom);
+   const char *pointTo = pcLine; 
+   size_t len_from = Str_getLength(pcFrom); 
+   size_t len_to = Str_getLength(pcTo); 
+   size_t len_newLine = 0; 
+   size_t originalLine = Str_getLength(pcLine); 
+   size_t totalReplaces = 0; 
+   size_t newspot = 0; 
+   size_t i; 
+   size_t print = 0; 
    /* Insert your code here. */
+    if (Str_getLength(pcFrom) == 0) {
+      printf("%s", pcLine); 
+      return 0; 
+   }
+   else {
+      while (newLine != NULL) {
+         len_newLine = Str_getLength(newLine);
+         
+         for (i = 0; i < originalLine - len_newLine; i++) {
+            printf("%c", *pointTo);
+            pointTo++;  
+            print++; 
+         }
+         for (i = 0; i < len_to; i++) {
+            printf("%c", pcTo[i]); 
+         }
+         for (i = 0; i < len_from; i++) {
+            pointTo++; 
+         }
+       //  print += len_from; 
+         originalLine = len_newLine - len_from;
+         newLine = Str_search(pointTo, pcFrom);
+         totalReplaces++; 
+      } 
+      for (i = 0; i < originalLine; i++) {
+         printf("%c", *pointTo); 
+         pointTo++; 
+      }
+      return totalReplaces; 
+   }
 }
+
 
 /*--------------------------------------------------------------------*/
 
@@ -40,7 +81,7 @@ int main(int argc, char *argv[])
 {
    enum {MAX_LINE_SIZE = 4096};
    enum {PROPER_ARG_COUNT = 3};
-
+   int dexy = 69; 
    char acLine[MAX_LINE_SIZE];
    char *pcFrom;
    char *pcTo;
@@ -55,9 +96,11 @@ int main(int argc, char *argv[])
    pcFrom = argv[1];
    pcTo = argv[2];
 
-   while (fgets(acLine, MAX_LINE_SIZE, stdin) != NULL)
+   while (fgets(acLine, MAX_LINE_SIZE, stdin) != NULL) {
       /* Insert your code here. */
-
+      uReplaceCount += replaceAndWrite(acLine, pcFrom, pcTo); 
+   }
    fprintf(stderr, "%lu replacements\n", (unsigned long)uReplaceCount);
+   
    return 0;
 }
