@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------*/
 /* replace.c                                                          */
-/* Author: ???                                                        */
+/* Author: Aidan Walsh                                                */
 /*--------------------------------------------------------------------*/
 
 #include "str.h"
@@ -27,7 +27,6 @@ static size_t replaceAndWrite(const char *pcLine,
    size_t len_newLine = 0; 
    size_t originalLine = Str_getLength(pcLine); 
    size_t totalReplaces = 0; 
-   size_t newspot = 0; 
    size_t i; 
    size_t print = 0; 
    /* Insert your code here. */
@@ -49,8 +48,7 @@ static size_t replaceAndWrite(const char *pcLine,
          }
          for (i = 0; i < len_from; i++) {
             pointTo++; 
-         }
-       //  print += len_from; 
+         } 
          originalLine = len_newLine - len_from;
          newLine = Str_search(pointTo, pcFrom);
          totalReplaces++; 
@@ -80,8 +78,7 @@ static size_t replaceAndWrite(const char *pcLine,
 int main(int argc, char *argv[])
 {
    enum {MAX_LINE_SIZE = 4096};
-   enum {PROPER_ARG_COUNT = 3};
-   int dexy = 69; 
+   enum {PROPER_ARG_COUNT = 3}; 
    char acLine[MAX_LINE_SIZE];
    char *pcFrom;
    char *pcTo;
