@@ -12,7 +12,7 @@ size_t Str_getLength(const char *s);
 /* return char array (string) that is the copy of src into dst. End 
 with null character. Assert no null arguments */
 char *Str_copy(char *dst, const char *src);
-/* return char array with source appended onto end of dst. End with
+/* return char array with source appended onto end of dest. End with
  null character. Assert no null arguments */
 char *Str_concat(char *dest, const char *source);
 /* return int where int is neg if char arr st1 is numerically less 
