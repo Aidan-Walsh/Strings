@@ -9,8 +9,7 @@
 #include <assert.h>
 #include <stddef.h>
 
-/* return size_t that is the length of the char array (string) s where 
-size ends with null character. Assert no null arguments */
+
 size_t Str_getLength(const char *s) {
     const char *end; 
     assert(s != NULL); 
@@ -24,8 +23,7 @@ size_t Str_getLength(const char *s) {
     return (size_t)(end - s); 
 }
 
-/* return char array (string) that is the copy of src into dst. End 
-with null character. Assert no null arguments */
+
 char *Str_copy(char *dst, const char *src) {
     char* first = dst; 
     assert(dst != NULL && src != NULL);
@@ -44,8 +42,7 @@ char *Str_copy(char *dst, const char *src) {
     return first; 
 }
 
-/* return char array with source appended onto end of dst. End with
- null character. Assert no null arguments */
+
 char *Str_concat(char *dest, const char *source) {
     const char* trackSource = source; 
     char* first = dest; 
@@ -74,9 +71,6 @@ char *Str_concat(char *dest, const char *source) {
     return first; 
 }
 
-/* return int where int is neg if char arr st1 is numerically less 
-than st2, return pos if st1 > st2, and 0 if equal. Assert no null 
-arguments */
 int Str_compare(const char *st1, const char *st2) {
     const char* pst1 = st1; 
     const char* pst2 = st2; 
@@ -110,9 +104,7 @@ int Str_compare(const char *st1, const char *st2) {
     return 0; 
 }
 
-/* return char array (string) that is the first occurence of needle 
-in haystack. If needle is empty, return haystack. Assert no null
-arguments. */
+
 char *Str_search(const char *haystack, const char *needle) {
     /* using pointers that point into both haystack and needle. 
     Two are used for haystack because we increment one, and use the 
