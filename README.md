@@ -11,6 +11,8 @@ This contains interfaces and implementations of string methods (a pointer versio
 3. Run the executable with the text file "text.txt" where every occurrence of "hi" is to be replaced with "hello", and this change is to be saved in a new text file "new.txt" and the number of occurrences is saved to "number.txt":
     - "./replace hi hello < text.txt > new.txt 2> number.txt"
     - If you do not wish to save the number of occurrences, you can just remove the "2> number.txt"
+4. If you run into a permission issue, then run this command and try step 3 again:
+    - "chmod +x replace"
     - Note that if you are running Linux, then you may have to add "sudo" to the beginning of the command to gain super-user privileges.
 
 
