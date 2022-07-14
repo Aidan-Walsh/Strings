@@ -12,6 +12,5 @@ This contains interfaces and implementations of string methods (a pointer versio
     - "./replace hi hello < text.txt > new.txt 2> number.txt"
     - If you do not wish to save the number of occurrences, you can just remove the "2> number.txt"
     - Note that if you are running Linux, then you may have to add "sudo" to the beginning of the command to gain super-user privileges.
-    
-You now have a program that replaces text!
+
 
